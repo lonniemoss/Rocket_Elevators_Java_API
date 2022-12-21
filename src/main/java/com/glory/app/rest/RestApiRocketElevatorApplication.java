@@ -1,6 +1,7 @@
 package com.glory.app.rest;
 
 import com.glory.app.rest.Models.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,6 +20,9 @@ public class RestApiRocketElevatorApplication {
 		SessionFactory factory =cfg.buildSessionFactory();
 		System.out.println("Factory created...");
 		System.out.println(User.class.getName());
+		Session session = factory.openSession();
+		System.out.println("Session created...");
+
 	}
 }
 
