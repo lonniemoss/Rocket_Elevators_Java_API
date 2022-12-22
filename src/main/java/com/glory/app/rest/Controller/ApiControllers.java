@@ -29,6 +29,7 @@ class ApiControllers {
     @Autowired
     private InterventionsRepo interventionsRepo;
 
+
     @Autowired
 //    private AddressesRepo addresseRepo;
 
@@ -47,7 +48,7 @@ class ApiControllers {
     @GetMapping(value = "/users/{id}")
     public User getUserByID(@PathVariable long id) {
 
-        return userRepo.findById(id).get();
+        return userRepo.findById((int) id).get();
     }
 
     @GetMapping(value = "/Addresses")
@@ -137,5 +138,7 @@ class ApiControllers {
     public Interventions getInterventionsByID(@PathVariable long id){
         return interventionsRepo.findById(id).get();
     }
+
+
 
 }

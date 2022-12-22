@@ -1,21 +1,28 @@
 package com.glory.app.rest.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Date;
-
+import java.util.Collection;
 
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     @Column
     private String email;
     @Column
@@ -44,9 +51,6 @@ public class User {
         this.update_at = update_at;
     }
 
-    public User() {
-
-    }
 
 
     public long getId() {
@@ -120,5 +124,47 @@ public class User {
                 "id=" + id +
                 ", email='" + email + '\'' + ", encrypted_password='" + encrypted_password + '\'' + ", title='" + title + '\'' + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", create_at='" + create_at + '\'' + ", update_at='" + update_at + '\'' + '}';
 
+    }
+
+
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @JsonIgnore
+    @Override
+    public String getPassword() {
+        return encrypted_password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
