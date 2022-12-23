@@ -56,6 +56,11 @@ GET http://localhost:8080/users
 ###
 POST http://localhost:8080/api/Authenticate
 
+{
+    "email": ""
+    "password": ""
+}
+
 ###
 POST http://localhost:8080/Interventions/new
 
