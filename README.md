@@ -47,11 +47,6 @@ use this link to find them: -->>https://mvnrepository.com/
 
 Use those endpoints in postman >>> https://www.postman.com/downloads/
 
-or
-
-run the project on the ide (press play) and click on the endpoints links
-
-endpoints
 
 
 
