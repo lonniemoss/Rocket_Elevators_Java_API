@@ -45,7 +45,95 @@ use this link to find them: -->>https://mvnrepository.com/
 
 # To Run this Project you can ...
 
-Access this Postman collection of mine >>>>> https://web.postman.co/workspace/dd717bba-286d-4b46-860a-d1a928c71545/collection/23653446-20f4285c-ae49-427b-a532-51975f24440c
+Use those endpoints in postman >>> https://www.postman.com/downloads/
+
+endpoints
+
+
+
+###
+GET http://localhost:8080/users
+
+###
+POST http://localhost:8080/api/Authenticate
+
+###
+POST http://localhost:8080/Interventions/new
+
+###
+GET http://localhost:8080/Customers
+
+###
+GET http://localhost:8080/Customers/{{id}}
+
+###
+GET http://localhost:8080/users/{{id}}
+
+###
+GET http://localhost:8080/Addresses
+
+###
+GET http://localhost:8080/Addresses/{{id}}
+
+###
+GET http://localhost:8080/Batteries
+
+###
+GET http://localhost:8080/Batteries/{{id}}
+
+###
+GET http://localhost:8080/Batteries/{{id}}/Addresses
+
+###
+GET http://localhost:8080/Buildings
+
+###
+GET http://localhost:8080/Buildings/{{id}}
+
+###
+GET http://localhost:8080/Buildings/{{id}}/Addresses
+
+###
+GET http://localhost:8080/Columns
+
+###
+GET http://localhost:8080/Columns/{{id}}
+
+###
+GET http://localhost:8080/Columns/{{id}}/Batteries
+
+###
+GET http://localhost:8080/Elevators
+
+###
+GET http://localhost:8080/Elevators/{{id}}
+
+###
+GET http://localhost:8080/Employees
+
+###
+GET http://localhost:8080/Employees/{{id}}
+
+###
+GET http://localhost:8080/Interventions
+
+###
+GET http://localhost:8080/Interventions/{{id}}
+
+###
+POST http://localhost:8080/Interventions/new
+
+###
+PATCH http://localhost:8080/Interventions/update/{{id}}
+
+###
+DELETE http://localhost:8080/Interventions/delete/{{id}}
+
+###
+POST http://localhost:8080/Customers/new
+
+
+
 
 
 
