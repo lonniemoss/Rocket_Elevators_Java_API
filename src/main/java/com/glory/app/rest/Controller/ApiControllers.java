@@ -2,12 +2,16 @@ package com.glory.app.rest.Controller;
 
 import com.glory.app.rest.Models.*;
 import com.glory.app.rest.Repo.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 class ApiControllers {
@@ -139,6 +143,49 @@ class ApiControllers {
         return interventionsRepo.findById(id).get();
     }
 
+    @PostMapping(value = "/Interventions/new")
+    public Interventions createIntervention(Interventions intervention){
+        return interventionsRepo.save(intervention);
+    }
+
+    @PatchMapping(value = "/Interventions/update/{id}")
+    public Object updateIntervention(@PathVariable long id, Interventions intervention) {
+        Optional<Interventions> optionalIntervention = interventionsRepo.findById(id);
+        if (optionalIntervention.isPresent()) {
+            Interventions interventionToUpdate = optionalIntervention.get();
+            interventionToUpdate.setBuilding_id(intervention.getBuilding_id());
+            interventionToUpdate.setEmployee_id(intervention.getEmployee_id());
+            interventionToUpdate.setReport(intervention.getReport());
+            interventionToUpdate.setResult(intervention.getResult());
+            interventionToUpdate.setStatus(intervention.getStatus());
+            interventionToUpdate.setInterventionDateStart(intervention.getInterventionDateStart());
+            interventionToUpdate.setInterventionDateEnd(intervention.getInterventionDateEnd());
+            return interventionsRepo.save(interventionToUpdate);
+        } else {
+            return "No Intervention found";
+        }
+    }
+
+    @DeleteMapping(value = "/Interventions/delete/{id}")
+    public String deleteIntervention(@PathVariable long id) {
+        if (interventionsRepo.existsById(id)) {
+            interventionsRepo.deleteById(id);
+        } else {
+            return "No Intervention found to delete";
+        }
+        return null;
+    }
+
+    @NotNull
+    @PostMapping(value = "/Customers/new")
+    public ResponseEntity<Customers> createCustomer(@Valid Customers customer) {
+        try {
+            Customers savedCustomer = customersRepo.save(customer);
+            return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 
 
 }

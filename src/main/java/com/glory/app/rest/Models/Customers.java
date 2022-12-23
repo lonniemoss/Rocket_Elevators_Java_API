@@ -3,6 +3,7 @@ package com.glory.app.rest.Models;
 
 //import javax.persistence.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Customers {
@@ -30,8 +31,10 @@ public class Customers {
     private String technicalAuthorityPhone;
     @Column
     private String technicalAuthorityEmail;
+    @NotNull
     @Column
     private String created_at;
+    @NotNull
     @Column
     private String updated_at;
 
@@ -142,7 +145,6 @@ public class Customers {
     }
 
     public void setCreated_at(String created_at) {
-
         this.created_at = created_at;
     }
 
@@ -154,6 +156,5 @@ public class Customers {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
-
 
 }
